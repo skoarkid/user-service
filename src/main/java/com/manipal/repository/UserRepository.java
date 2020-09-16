@@ -7,7 +7,8 @@ import com.manipal.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
+	boolean existsByUserName(String string);
 
-	User findByUserNameAndPassword(String userName, String password);
+	User findByUserName(String userName);
 
 }

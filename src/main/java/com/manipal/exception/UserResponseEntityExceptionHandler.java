@@ -18,10 +18,20 @@ public class UserResponseEntityExceptionHandler extends ResponseEntityExceptionH
 	}
 	
 	@ExceptionHandler({UserNotFoundException.class,BookingNotFoundException.class})
-	public ResponseEntity<ExceptionResponse> movieNotFound(Exception exception) {
+	public ResponseEntity<ExceptionResponse> notFound(Exception exception) {
 		ExceptionResponse response = new ExceptionResponse(exception.getMessage(),LocalDateTime.now());
 		return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(UsernameExistsException.class)
+	public ResponseEntity<ExceptionResponse> unavailable(UsernameExistsException exception) {
+		ExceptionResponse response = new ExceptionResponse(exception.getMessage(),LocalDateTime.now());
+		return new ResponseEntity<>(response,HttpStatus.FORBIDDEN);
+	}
 	
+	@ExceptionHandler({IncorrectPasswordException.class ,IncorrectUsernameException.class})
+	public ResponseEntity<ExceptionResponse> unavailable(Exception exception) {
+		ExceptionResponse response = new ExceptionResponse(exception.getMessage(),LocalDateTime.now());
+		return new ResponseEntity<>(response,HttpStatus.FORBIDDEN);
+	}
 }
