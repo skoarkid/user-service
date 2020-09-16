@@ -17,8 +17,8 @@ public class UserResponseEntityExceptionHandler extends ResponseEntityExceptionH
 		return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@ExceptionHandler(UserNotFoundException.class)
-	public ResponseEntity<ExceptionResponse> movieNotFound(UserNotFoundException exception) {
+	@ExceptionHandler({UserNotFoundException.class,BookingNotFoundException.class})
+	public ResponseEntity<ExceptionResponse> movieNotFound(Exception exception) {
 		ExceptionResponse response = new ExceptionResponse(exception.getMessage(),LocalDateTime.now());
 		return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
 	}

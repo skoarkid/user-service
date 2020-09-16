@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
 	@Column(name="user_name")
 	private String userName;
 	private String password;
@@ -25,7 +25,7 @@ public class User {
 	public User() {
 		super();
 	}
-	public User(int id, String userName, String password, String firstName, String lastName, Contact contact) {
+	public User(long id, String userName, String password, String firstName, String lastName, Contact contact) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -34,10 +34,10 @@ public class User {
 		this.lastName = lastName;
 		this.contact = contact;
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getUserName() {
@@ -70,5 +70,4 @@ public class User {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-
 }
